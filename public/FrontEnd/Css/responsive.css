@@ -1,0 +1,272 @@
+/*////////////////  Hide in small screen  ///////////////////*/
+.navbar-brand-big img {
+    padding: 10px 0;
+    height: 100px;
+}
+
+.navbar-brand-big {
+    display: block;
+}
+
+.first-topnav {
+    display: block;
+}
+
+.big-sc-nav-link {
+    display: none;
+}
+
+.content-space {
+    width: 100%;
+    height: 170px;
+}
+
+.displayNone {
+    display: none;
+}
+
+.navbar-brand-big {
+    display: block;
+}
+
+.changeBG {
+    background-color: #005a9c;
+}
+
+/*////////////////  Less than 991px  ///////////////////*/
+@media all and (max-width: 991px) {
+    .btn-close {
+        color: #fff;
+    }
+
+    .btn-outline-signin {
+        margin-top: 1rem;
+        color: #fff;
+    }
+
+    #navbarSupportedContent .mobile-menu .dropdown-item {
+        color: #fff;
+    }
+
+    .btn {
+        margin: 10px;
+    }
+
+    form {
+        margin-bottom: 10px;
+    }
+
+    .home .carousel-item {
+        margin-top: 0;
+        min-height: 500px;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        z-index: -2;
+    }
+
+    #navbarSupportedContent .mobile-menu,
+    #navbarSupportedContent .mobile-menu .dropdown-menu {
+        background-color: #003764;
+    }
+
+    .testing {
+        display: none;
+    }
+
+    .mobile-menu .dropdown-menu .dropdown-item {
+        padding-left: 25px;
+    }
+
+    .mobile-menu .dropdown-menu .dropdown-menu .dropdown-item {
+        padding-left: 32px;
+    }
+
+    .displayNone {
+        display: block;
+    }
+
+    .navbar-brand-big,
+    .navbar-brand-big img,
+    .navbar-brand-big form {
+        display: none;
+        height: 0;
+    }
+
+    .changeBG {
+        background-color: #fff;
+    }
+
+    .content-space {
+        width: 100%;
+        height: 60px;
+    }
+
+    .first-topnav {
+        display: none;
+    }
+
+    .navbar-brand-big {
+        display: none !important;
+    }
+
+    .largeLogo {
+        display: none;
+    }
+
+    .navbar .navbar-brand {
+        display: block !important;
+    }
+
+    .navbar .bg-color-purple {
+        background-color: #fff;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        color: #000 !important;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover {
+        color: rgb(131, 131, 131) !important;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 8px 24px;
+    }
+
+    .dropdown-menu .dropend ul li a {
+        padding: 8px 52px;
+    }
+
+    .big-sc-nav-link {
+        display: block;
+    }
+
+    .dropdown-menu.drop-fade-down {
+        animation: dropFadeDown 250ms ease-out;
+        min-width: 13rem;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+    }
+
+    .offcanvas-header {
+        display: block;
+    }
+
+    .offcanvas-header button {
+        float: right;
+    }
+
+    @keyframes dropFadeDown {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+/*////////////////  Less than 767px  ///////////////////*/
+@media all and (max-width: 767px) {
+    .search-form-group {
+        display: grid;
+        grid-template-columns: 1fr;
+        border: none;
+    }
+
+    .search-form-group .search-form-item {
+        margin-bottom: 15px;
+    }
+
+    .search-form-group .search-form-item select,
+    .search-form-group .search-form-item input[type=text] {
+        border: 1px solid #dadada;
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .search-form-group .search-form-item i {
+        left: 3%;
+    }
+
+    .search-form-group .search-form-item:first-child .form-control {
+        border-radius: 0;
+    }
+
+    .search-form-group .search-form-item:last-child .form-control {
+        border-radius: 0;
+    }
+
+    .img-detail {
+        width: 70%;
+    }
+
+    footer .copy-right {
+        display: block !important;
+    }
+
+    footer .copy-right img {
+        height: 35px !important;
+    }
+
+    footer .copy-right p {
+        padding: 0 !important;
+    }
+}
+
+/*////////////////  Less than 575px  ///////////////////*/
+@media all and (max-width: 575px) {
+    h3 {
+        font-size: 16px;
+    }
+
+    a,
+    b {
+        font-size: 15px;
+    }
+
+    .ribbon span {
+        top: 15px;
+        left: -21px;
+    }
+
+    .fa-heart {
+        padding: 5px;
+    }
+
+    .p-xs-0 {
+        padding: 0 !important;
+    }
+
+    .p-xs-1 {
+        padding: 1rem !important;
+    }
+
+    .fz-xs-12 {
+        font-size: 12px;
+    }
+
+    .reverse-sm {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .pt-xs-5 {
+        padding-top: 3rem;
+    }
+
+    p {
+        text-align: justify;
+    }
+
+    footer .row>* {
+        padding: 0;
+    }
+
+    .home .carousel-control-prev,
+    .home .carousel-control-next {
+        display: none;
+    }
+}
