@@ -2,9 +2,9 @@
     <div class="page-logo">
         <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative"
             data-toggle="modal" data-target="#modal-shortcut">
-            <img src="{{ asset('FrontEnd/Image/favicon-mjqjobs-02-01.png') }}" aria-roledescription="logo"
+            <img src="{{ asset('FrontEnd/Image/PF-logo-01.png') }}" aria-roledescription="logo"
                 style="height:28px!important;">
-            <span class="page-logo-text mr-1">MJQ Job </span>
+            <span class="page-logo-text mr-1">Apply Loan </span>
             <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
             <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
         </a>
@@ -54,7 +54,7 @@
             </li>
 
             {{-- article --}}
-            <li name='panelList' data-access-to="parent">
+            {{-- <li name='panelList' data-access-to="parent">
                 <a href="javascript:void(0);" title="Setting" data-filter-tags='{"anchor":"miltiple","role":"parent"}'>
                     <i class="fal fa-phone-laptop"></i>
                     <span class="nav-link-text">Job Articles</span>
@@ -138,12 +138,11 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
             {{-- Menus --}}
             <li name='panelList' data-access-to="parent">
-                <a href="javascript:void(0);" title="Setting"
-                    data-filter-tags='{"anchor":"miltiple","role":"parent"}'>
+                <a href="javascript:void(0);" title="Setting" data-filter-tags='{"anchor":"miltiple","role":"parent"}'>
                     <i class="fal fa-phone-laptop"></i>
                     <span class="nav-link-text">Menus</span>
                 </a>
@@ -160,8 +159,7 @@
             </li>
 
             <li name='panelList' data-access-to="parent">
-                <a href="javascript:void(0);" title="Setting"
-                    data-filter-tags='{"anchor":"miltiple","role":"parent"}'>
+                <a href="javascript:void(0);" title="Setting" data-filter-tags='{"anchor":"miltiple","role":"parent"}'>
                     <i class="fal fa-phone-laptop"></i>
                     <span class="nav-link-text">Site Info</span>
                 </a>

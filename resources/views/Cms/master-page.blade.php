@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{ asset('FrontEnd/Image/favicon-mjqjobs-02-01.png') }}">
-    <title>@yield('title', 'MJQ Job')</title>
+    <link rel="shortcut icon" href="{{ asset('FrontEnd/Image/PF-logo-01.png') }}">
+    <title>@yield('title', 'Apply Loan')</title>
 
     <!-- Bootstrap 5 cdn -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -54,7 +54,7 @@
 
     @include('Cms.top-menu')
     @yield('content')
-    @include('Cms.bottom-menu')
+    {{-- @include('Cms.bottom-menu') --}}
 
 
     <!-- JQuery -->

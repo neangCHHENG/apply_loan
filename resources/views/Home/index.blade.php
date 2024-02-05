@@ -3,7 +3,7 @@
 @section('content')
     <div id='containerDiv'>
         <center>
-            <h1>Welcome to MJQ Job Adminstration</h1>
+            <h1>Welcome to Apply Loan Adminstration</h1>
         </center>
         @include('../layouts/dashboard')
     </div>

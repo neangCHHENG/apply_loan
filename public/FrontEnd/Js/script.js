@@ -33,9 +33,25 @@ $(document).ready(function () {
             );
         }
     }
-
     $(".carousel").carousel({
         interval: 1000 * 3,
+    });
+    $("#owl-carousel-adverti").owlCarousel({
+        loop: true,
+        margin: 16,
+        nav: true,
+        dots: false,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            567: {
+                items: 1,
+            },
+            767: {
+                items: 1,
+            },
+        },
     });
 
     $(".gallery").magnificPopup({

@@ -1,244 +1,157 @@
 @extends('Cms.master-page')
 @section('content')
-    <section class="home">
-        @foreach ($data['slide'] as $key => $value)
-            @if ($key == 1)
-            @break
-        @endif
-        <div class="p-5 home" style='background-image: url("{{ $value->thumbnail }}");'>
-            <div class="container-xl" style="position: relative">
-                <h1>Apply Loan</h1>
+    <section class="row">
+        <div class="home pt-5" style='background-image: url({{ asset('FrontEnd/Image//20240124-MJQE-Final-Slide.jpg') }})';>
+            <div class="container-xl pt-5">
+                <h1 class="pt-5">{{ App::getLocale() == 'en' ? 'Apply Loan' : 'ស្នើសុំប្រាក់កម្ចី' }}</h1>
             </div>
         </div><br>
-    @endforeach
-</section>
-<section class="container-xl p-4">
-    <div class="row">
-        <h3>{{ App::getLocale() == 'en' ? 'Browse Jobs by Categories' : 'ស្វែងរកការងារតាមប្រភេទផ្នែក' }}</h3>
-        @foreach ($data['department'] as $key => $value)
-            <div class="col-lg-3 col-md-4 col-sm-6 mt-3">
-                <div class="card px-3 h-100 categories-job mb-5" style="flex-direction: row; align-items: center">
-                    <div class="col-sm-4 border-0">
-                        <img src="{{ $value->thumbnail }}" alt="slide">
+    </section>
+    <section class="container-xl">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 ">
+                <form class="row apply_loan p-3 pb-5" action="">
+                    <h5>{{ App::getLocale() == 'en' ? 'Loan Details' : 'ព័ត៌មានលម្អិតអំពីប្រាក់កម្ចី' }}</h5><br>
+                    <div class="col-md-6 col-sm-12 form-group">
+                        <label
+                            for="">{{ App::getLocale() == 'en' ? 'Loan Amount' : 'ចំនួនប្រាក់កម្ចី' }}</label><br>
+                        <input class="form-control" type="number" name="loan_amount" id="loan_amount"
+                            placeholder="{{ App::getLocale() == 'en' ? 'Loan Amount' : 'ចំនួនប្រាក់កម្ចី' }}">
                     </div>
-                    <div class="col-sm-8 p-0 pt-3">
-                        <b>{{ App::getLocale() == 'en' ? $value->title_en : $value->title_kh }}</b><br>
-                        <span>
-                            @if ($value->job_count == 1)
-                                {{ $value->job_count }} {{ App::getLocale() == 'en' ? 'job available' : 'ការងារ' }}
-                            @else
-                                {{ $value->job_count }} {{ App::getLocale() == 'en' ? 'jobs available' : 'ការងារ' }}
-                            @endif
-                        </span>
+                    <div class="col-md-6 col-sm-12 form-group">
+                        <label
+                            for="">{{ App::getLocale() == 'en' ? 'Monthly Income' : 'ចំណូល​ប្រចាំខែ' }}</label><br>
+                        <input class="form-control" type="number" name="monthly_income" id="monthly_income"
+                            placeholder="{{ App::getLocale() == 'en' ? 'Monthly Income' : 'ចំណូល​ប្រចាំខែ' }}">
                     </div>
+                    <div class="col-md-6 col-sm-12 form-group">
+                        <label for="">Purpose of Loan</label><br>
+                        <select class="form-control" name="purpose_loan" id="purpose_loan">
+                            <option value="Business ">Business </option>
+                            <option value="Real Estate Loan">Real Estate Loan</option>
+                            <option value="Auto Loan">Auto Loan</option>
+                            <option value="Investment">Investment</option>
+                            <option value="Wedding ">Wedding </option>
+                            <option value="Holiday">Holiday</option>
+                            <option value="others...">others...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-sm-12 form-group">
+                        <label for="">{{ App::getLocale() == 'en' ? 'Loan year' : 'ឆ្នាំខ្ចី' }}</label><br>
+                        <select class="form-control" name="loan_year" id="loan_year">
+                            <option value="2 months">{{ App::getLocale() == 'en' ? '2 months' : '២ ខែ' }}</option>
+                            <option value="4 months">{{ App::getLocale() == 'en' ? '4 months' : '៤ ខែ' }}</option>
+                            <option value="6 months">{{ App::getLocale() == 'en' ? '6 months' : '៦ ខែ' }}</option>
+                            <option value="1 year">{{ App::getLocale() == 'en' ? '1 year' : '១ ឆ្នាំ' }}</option>
+                            <option value="2 years">{{ App::getLocale() == 'en' ? '2 years' : '២ ឆ្នាំ' }}</option>
+                            <option value="3 years">{{ App::getLocale() == 'en' ? '3 years' : '៣ ឆ្នាំ' }}</option>
+                            <option value="4 years">{{ App::getLocale() == 'en' ? '4 years' : '៤ ឆ្នាំ' }}</option>
+                            <option value="5 years">{{ App::getLocale() == 'en' ? '5 years' : '៥ ឆ្នាំ' }}</option>
+                            <option value="6 years">{{ App::getLocale() == 'en' ? '6 years' : '៦ ឆ្នាំ' }}</option>
+                        </select>
+                    </div>
+                    <h5>{{ App::getLocale() == 'en' ? 'Personal Details' : 'ព័ត៌មានលម្អិតផ្ទាល់ខ្លួន' }}</h5><br>
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label for="">{{ App::getLocale() == 'en' ? 'Full Name' : 'ឈ្មោះ​ពេញ' }}</label><br>
+                        <input class="form-control" type="text" name="full_name" id="full_name"
+                            placeholder="{{ App::getLocale() == 'en' ? 'Full Name' : 'ឈ្មោះ​ពេញ' }}">
+                    </div>
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label for="">{{ App::getLocale() == 'en' ? 'Email' : 'អ៊ីមែល' }}</label><br>
+                        <input class="form-control" type="email" name="email" id="email"
+                            placeholder="{{ App::getLocale() == 'en' ? 'Email' : 'អ៊ីមែល' }}">
+                    </div>
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label for="">{{ App::getLocale() == 'en' ? 'Phone Number' : 'លេខទូរសព្ទ' }}</label><br>
+                        <input class="form-control" type="text" name="phone_number" id="phone_number"
+                            placeholder="{{ App::getLocale() == 'en' ? 'Phone Number' : 'លេខទូរសព្ទ' }}">
+                    </div>
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label
+                            for="">{{ App::getLocale() == 'en' ? 'Marital Status' : 'ស្ថានភាពអាពាហ៍ពិពាហ៍' }}</label><br>
+                        <select class="form-control" name="marital_status" id="marital_status">
+                            <option value="Single ">{{ App::getLocale() == 'en' ? 'Single' : 'នៅលីវ' }}</option>
+                            <option value="Married">{{ App::getLocale() == 'en' ? 'Married' : 'រៀបការ' }}</option>
+                            <option value="Partners ">{{ App::getLocale() == 'en' ? 'Partners' : 'ដៃគូ' }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label
+                            for="">{{ App::getLocale() == 'en' ? 'Date of Birth' : 'ថ្ងៃខែ​ឆ្នាំ​កំណើត' }}</label><br>
+                        <input class="form-control" type="date" name="date_birth" id="date_birth"
+                            placeholder="{{ App::getLocale() == 'en' ? 'Date of Birth' : 'ថ្ងៃខែ​ឆ្នាំ​កំណើត' }}">
+                    </div>
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label
+                            for="">{{ App::getLocale() == 'en' ? 'Number Of Dependents' : 'ចំនួននាក់អាស្រ័យ' }}</label><br>
+                        <select class="form-control" name="number_dependents" id="number_dependents">
+                            <option value="0 Dependent">
+                                {{ App::getLocale() == 'en' ? '0 Dependent' : 'មិនមាននាក់អាស្រ័យ' }}</option>
+                            <option value="1 Dependent">
+                                {{ App::getLocale() == 'en' ? '1 Dependent' : 'ចំនួន១នាក់អាស្រ័យ' }}</option>
+                            <option value="2 Dependent ">
+                                {{ App::getLocale() == 'en' ? '2 Dependents' : 'ចំនួន២នាក់អាស្រ័យ' }} </option>
+                            <option value="3 Dependent ">
+                                {{ App::getLocale() == 'en' ? '3 Dependents' : 'ចំនួន៣នាក់អាស្រ័យ' }}</option>
+                            <option value="4 Dependent ">
+                                {{ App::getLocale() == 'en' ? '4 Dependents' : 'ចំនួន៤នាក់អាស្រ័យ' }}</option>
+                            <option value="5 + Dependent ">
+                                {{ App::getLocale() == 'en' ? '5+ Dependents' : 'ចំនួន៥+នាក់អាស្រ័យ' }}</option>
+                        </select>
+                    </div>
+                    <h5>{{ App::getLocale() == 'en' ? 'Address Details' : 'ព័ត៌មានលម្អិតអំពីអាសយដ្ឋាន' }}</h5>
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label
+                            for="">{{ App::getLocale() == 'en' ? 'House No/Name' : 'ផ្ទះលេខ/ឈ្មោះ' }}</label><br>
+                        <input class="form-control" type="text" name="house_no" id="house_no"
+                            placeholder="{{ App::getLocale() == 'en' ? 'House No/Name' : 'ផ្ទះលេខ/ឈ្មោះ' }}">
+                    </div>
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label for="">{{ App::getLocale() == 'en' ? 'Street' : 'ផ្លូវ' }}</label><br>
+                        <input class="form-control" type="text" name="street" id="street"
+                            placeholder="{{ App::getLocale() == 'en' ? 'Street' : 'ផ្លូវ' }}">
+                    </div>
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label for="">{{ App::getLocale() == 'en' ? 'State/Province' : 'រដ្ឋ/ខេត្ត' }}</label><br>
+                        <input class="form-control" type="text" name="province" id="province"
+                            placeholder="{{ App::getLocale() == 'en' ? 'State/Province' : 'រដ្ឋ/ខេត្ត' }}">
+                    </div>
+                    <div class="col-md-6 col-sm-12 form-group">
+                        <label for="">{{ App::getLocale() == 'en' ? 'City' : 'ទីក្រុង' }}</label><br>
+                        <input class="form-control" type="text" name="city" id="city"
+                            placeholder="{{ App::getLocale() == 'en' ? 'City' : 'ទីក្រុង' }}">
+                    </div>
+                    <div class="col-md-6 col-sm-12 form-group">
+                        <label for="">{{ App::getLocale() == 'en' ? 'Country' : 'ប្រទេស' }}</label><br>
+                        <input class="form-control" type="text" name="country" id="country"
+                            placeholder="{{ App::getLocale() == 'en' ? 'Country' : 'ប្រទេស' }}">
+                    </div>
+
+                </form>
+                <button type="button" id="btnSaveApplyLoan" class="btn-send btn btn-lg"
+                    style="min-width: 100px; justify-content: center; float:right">
+                    {{ App::getLocale() == 'en' ? 'Apply now' : 'ដាក់ពាក្យ​ឥឡូវនេះ' }}
+                </button><br><br>
+            </div>
+            <div class="col-md-4 col-sm-12" style="background-color: #fff">
+                <div class="row p-2 pt-5 pb-5">
+                    <div class="owl-carousel owl-theme" id="owl-carousel-adverti">
+                        @foreach ($data['slide'] as $key => $value)
+                            <img src="{{ $value->thumbnail }}">
+                        @endforeach
+                    </div>
+                    <h5>{{ App::getLocale() == 'en' ? 'CONTACT US' : 'ទំនាក់ទំនង' }}</h5>
+                    <?php
+                    foreach ($menuFooterItems as $menuFooterItem) {
+                        if ($menuFooterItem->type == 'address' || $menuFooterItem->type == 'phone' || $menuFooterItem->type == 'email') {
+                            $value = App::getLocale() == 'en' ? $menuFooterItem->value_en : $menuFooterItem->value_kh;
+                            $str = '';
+                            echo $str = $str . '<p>' . $value . '</p><br>';
+                        }
+                    }
+                    ?>
                 </div>
             </div>
-        @endforeach
-    </div>
-</section>
-
-<section class="container-xl p-4 mt-lg-5">
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-xs-8 col-7">
-            <h3>{{ App::getLocale() == 'en' ? 'TOP UP YOUR JOB' : 'បញ្ចូលការងាររបស់អ្នក' }}</h3>
-            <span>{{ App::getLocale() == 'en' ? 'Most featured jobs listed' : 'ការងារពិសេសបំផុតដែលបានរាយបញ្ជី' }}</span><br><br>
         </div>
-        <div class=" col-lg-4 col-md-4 col-sm-4 col-5 text-end">
-            <a class="a-style" href="{{ url(App::getLocale() == 'en' ? 'en/find-jobs/' : 'find-jobs/') }}">
-                {{ App::getLocale() == 'en' ? 'More Jobs ' : 'ការងារច្រើនទៀត ' }} <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
-    <div class="row">
-        @foreach ($data['jobList'] as $key => $value)
-            <div class="col-lg-6 col-md-12 col-sm-12 mb-5">
-                <div class="card categories-job w-100 " style="border: 1px solid #e8e8e8; ">
-                    <div class="row p-4">
-                        <div class="col-md-3 col-sm-3 col-12">
-
-                            <div class="thumbnial-wrapper"
-                                style="border: 1px solid #dadada; padding: 5px; border-radius: 4px; margin: 0 auto">
-                                <div class="ribbon">
-                                    @if ($value->urgent == 1)
-                                        <span>{{ App::getLocale() == 'en' ? 'Urgent' : 'បន្ទាន់' }}</span>
-                                    @else
-                                    @endif
-                                </div>
-
-                                <a
-                                    href="{{ url(App::getLocale() == 'en' ? '/en/articles/' . $value->id : '/articles/' . $value->id) }}">
-                                    @if ($value->thumbnail == null)
-                                        <div class="thumbnial-inner img1by1">
-                                            <img class="img-fluid" src="{{ $value->thumbnail_com }}" alt="">
-                                        </div>
-                                    @else
-                                        <div class="thumbnial-inner img1by1">
-                                            <img class="img-fluid" src="{{ $value->thumbnail }}" alt="">
-                                        </div>
-                                    @endif
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 mt-sm-0 col-8 mt-5 p-xs-0">
-                            <a class="caption-job"
-                                href="{{ url(App::getLocale() == 'en' ? '/en/articles/' . $value->id : '/articles/' . $value->id) }}">
-                                <p>
-                                    <b>{{ App::getLocale() == 'en' ? $value->position_en : $value->position_kh }}</b>
-                                </p>
-                                <span>
-                                    {{ App::getLocale() == 'en' ? $value->company_en : $value->company_kh }}
-                                </span>
-                                <br>
-                                <span>{{ App::getLocale() == 'en' ? $value->location_en . ', on' : $value->location_kh . ', ' }}</b>
-                                    @php
-                                        $currentDateTime = new DateTime();
-                                        $startDate = new DateTime($value->start_date);
-                                        $dateDifference = $startDate->diff($currentDateTime);
-                                        $daysDifference = $dateDifference->days;
-
-                                        if ($daysDifference == 1) {
-                                            $dayDd = $daysDifference . (App::getLocale() == 'en' ? ' day ago' : ' ថ្ងៃ​មុន');
-                                            print "$dayDd";
-                                        } else {
-                                            $dayDd = $daysDifference . (App::getLocale() == 'en' ? ' days ago' : ' ថ្ងៃ​មុន');
-                                            print "$dayDd";
-                                        }
-                                    @endphp
-                                </span>
-                                <br>
-                                <span class="vacancy-type">
-                                    {{ App::getLocale() == 'en' ? $value->vacancy_en : $value->vacancy_kh }}
-                                </span>
-
-                            </a>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-4 mt-sm-0 mt-5 text-center p-xs-0">
-                            <i class="fa fa-heart" aria-hidden="true"></i><br>
-                            <b class="pt-5 fz-xs-12" style="display: inline-block;color:#e00808">
-                                {{ $value->offered_salary }}</b>
-                        </div>
-                    </div>
-                </div>
-            </div><br>
-        @endforeach
-    </div>
-</section>
-<section class="container-xl p-4 mt-lg-5">
-    <div class="row">
-        <h3>{{ App::getLocale() == 'en' ? 'Our Company' : 'ក្រុមហ៊ុនរបស់យើង' }}</h3><br>
-        {{-- ourCompany img --}}
-        <?php
-        $ourCompany = '';
-        foreach ($menuFooterItems as $key => $value) {
-            if ($value->key == 'ourCompany') {
-                $ourCompany = $value->image;
-            }
-        }
-        ?>
-        <img class="w-100" src="{{ $ourCompany }}" alt="ourCompany.png">
-        {{-- ourCompany img --}}
-    </div>
-</section>
-
-<section class="container-xl mt-lg-5 p-4">
-    <div class="row">
-        <h3>{{ App::getLocale() == 'en' ? 'Our Benefits' : 'អត្ថប្រយោជន៍របស់យើង' }}</h3><br>
-        @foreach ($data['benefit'] as $key => $value)
-            <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
-                <div class="card w-100 h-100 categories-job" style="border: 1px solid #e8e8e8;">
-                    <div class="row p-3 ">
-                        <a class="caption-job">
-                            <h3 style="color: #006790 !important; text-align:center">{{ $key + 1 }}.<br /> <b
-                                    style="font-size: 15px;color:black">
-                                    {{ App::getLocale() == 'en' ? $value->title_en : $value->title_kh }}
-                                </b>
-                            </h3>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</section><br><br>
-<script>
-    $(document).ready(function() {
-        getSpecialismList();
-        getLocationList();
-    });
-
-    window.onload = function() {
-        let popup = $('#popupValue').val();
-        if (popup) {
-            setTimeout(function() {
-                $("#popup").addClass("active");
-            }, 10);
-        }
-    }
-
-    function closePopup() {
-        $("#popup").removeClass("active");
-    }
-
-    function getSpecialismList() {
-        $.ajax({
-            url: "{{ url('/admin/searchSpecialism/getSpecialismList') }}",
-            type: "GET",
-
-            success: function(response) {
-                if (response.result == "error") {
-                    sweetToast(response.msg, response.result);
-                    return;
-                }
-                var typeStr =
-                    "<option><span>All Specialisms </span></option>";
-
-                for (var i = 0; i < response.data.length; i++) {
-                    typeStr +=
-                        '<option value="' +
-                        response.data[i].id +
-                        '">' +
-                        response.data[i].title_kh +
-                        "-" +
-                        response.data[i].title_en +
-                        "</option>";
-                }
-                $("#specialism").html(typeStr);
-            },
-            error: function(e) {
-                if (e.status == 401) {
-                    //unauthenticate not login
-                    Msg("Login is Required", "error");
-                }
-            },
-        });
-    }
-
-    function getLocationList() {
-        $.ajax({
-            url: "{{ url('/admin/searchSpecialism/getLocationList') }}",
-            type: "GET",
-            success: function(response) {
-                if (response.result == "error") {
-                    sweetToast(response.msg, response.result);
-                    return;
-                }
-
-                var typeStr = "<option value=''>All Locations</option>";
-
-                for (var i = 0; i < response.data.length; i++) {
-                    typeStr += "<option value='" + response.data[i].id + "'>" + response.data[i].title_kh +
-                        "-" + response.data[i].title_en + "</option>";
-                }
-
-                $("#locations").html(typeStr);
-            },
-            error: function(e) {
-                if (e.status == 401) {
-                    // unauthenticated, not logged in
-                    Msg("Login is Required", "error");
-                }
-            },
-        });
-    }
-</script>
+    </section>
 @endsection

@@ -11,7 +11,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 <head>
     <meta charset="utf-8">
-    <title>MJQ Job </title>
+    <title>Apply Loan </title>
     <meta name="description" content="Page Title">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no, minimal-ui">
@@ -27,7 +27,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link id="myskin" rel="stylesheet" media="screen, print" href="{{ asset('plugin/css/skins/skin-master.css') }}">
 
     <!-- Place favicon.ico in the root directory -->
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('FrontEnd/Image/favicon-mjqjobs-02-01.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('FrontEnd/Image/PF-logo-01.png') }}">
     <link rel="mask-icon" href="{{ asset('plugin/img/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
     <link rel="stylesheet" media="screen, print"
         href="{{ asset('plugin/css/notifications/sweetalert2/sweetalert2.bundle.css') }}">
