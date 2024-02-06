@@ -12,6 +12,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\googleCalendarController;
 use Illuminate\Http\Request;
 use Spatie\GoogleCalendar\Event;
+use App\Http\Controllers\ApplyLoanController;
 
 
 //=======================================================================
@@ -66,11 +67,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/admin/viewUserPhoto', [AdminController::class, 'viewUserPhoto',]);
     #endregion
 
-    Route::get('/admin/searchVacancytype/getVacancytypeList', [ContactSubmitController::class, 'getVacancytypeList']);
-    Route::get('/admin/searchSpecialism/getLocationList', [ContactSubmitController::class, 'getLocationList']);
-    Route::get('/admin/searchSpecialism/getSpecialismList', [ContactSubmitController::class, 'getSpecialismList']);
-    Route::post('/admin/message-contact/contactSubmit', [ContactSubmitController::class, 'contactSubmit']);
     Route::post('/admin/saveUser/saveUserFontEnd', [AdminController::class, 'saveUserFontEnd']);
+
+    Route::post('/admin/apply-loan/applyLoanSubmit', [ApplyLoanController::class, 'applyLoanSubmit']);
 });
 
 Route::get('search', [SearchController::class, 'search'])->name('search');

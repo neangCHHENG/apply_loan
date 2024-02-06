@@ -3,14 +3,17 @@
     <section class="row">
         <div class="home pt-5" style='background-image: url({{ asset('FrontEnd/Image//20240124-MJQE-Final-Slide.jpg') }})';>
             <div class="container-xl pt-5">
-                <h1 class="pt-5">{{ App::getLocale() == 'en' ? 'Apply Loan' : 'ស្នើសុំប្រាក់កម្ចី' }}</h1>
+                <h1>{{ App::getLocale() == 'en' ? 'Apply Loan' : 'ស្នើសុំប្រាក់កម្ចី' }}</h1>
             </div>
         </div><br>
     </section>
     <section class="container-xl">
         <div class="row">
             <div class="col-md-8 col-sm-12 ">
-                <form class="row apply_loan p-3 pb-5" action="">
+                <form class="row apply_loan p-3 pb-5" method="post" action="" id="applyLoanForm"
+                    enctype="multipart/form-data">
+                    <input type="hidden" name="_token" id="csrf" value="{{ Session::token() }}">
+                    <!--create token-->
                     <h5>{{ App::getLocale() == 'en' ? 'Loan Details' : 'ព័ត៌មានលម្អិតអំពីប្រាក់កម្ចី' }}</h5><br>
                     <div class="col-md-6 col-sm-12 form-group">
                         <label
@@ -25,15 +28,20 @@
                             placeholder="{{ App::getLocale() == 'en' ? 'Monthly Income' : 'ចំណូល​ប្រចាំខែ' }}">
                     </div>
                     <div class="col-md-6 col-sm-12 form-group">
-                        <label for="">Purpose of Loan</label><br>
+                        <label
+                            for="">{{ App::getLocale() == 'en' ? 'Purpose of Loan' : 'គោលបំណងនៃប្រាក់កម្ចី' }}</label><br>
                         <select class="form-control" name="purpose_loan" id="purpose_loan">
-                            <option value="Business ">Business </option>
-                            <option value="Real Estate Loan">Real Estate Loan</option>
-                            <option value="Auto Loan">Auto Loan</option>
-                            <option value="Investment">Investment</option>
-                            <option value="Wedding ">Wedding </option>
-                            <option value="Holiday">Holiday</option>
-                            <option value="others...">others...</option>
+                            <option value="Business ">{{ App::getLocale() == 'en' ? 'Business' : 'អាជីវកម្ម' }}</option>
+                            <option value="Real Estate Loan">
+                                {{ App::getLocale() == 'en' ? 'Real Estate Loan' : 'ប្រាក់កម្ចីអចលនទ្រព្យ' }}</option>
+                            <option value="Auto Loan">
+                                {{ App::getLocale() == 'en' ? 'Auto Loan' : 'ប្រាក់កម្ចីដោយស្វ័យប្រវត្តិ' }}</option>
+                            <option value="Investment">{{ App::getLocale() == 'en' ? 'Investment' : 'ការវិនិយោគ' }}
+                            </option>
+                            <option value="Wedding ">{{ App::getLocale() == 'en' ? 'Wedding' : 'អាពាហ៍ពិពាហ៍' }}</option>
+                            <option value="Holiday">{{ App::getLocale() == 'en' ? 'Holiday' : 'ថ្ងៃឈប់សម្រាក' }}</option>
+                            <option value="others">{{ App::getLocale() == 'en' ? 'others...' : 'អ្នកផ្សេងទៀត...' }}
+                            </option>
                         </select>
                     </div>
                     <div class="col-md-6 col-sm-12 form-group">
@@ -128,7 +136,7 @@
                     </div>
 
                 </form>
-                <button type="button" id="btnSaveApplyLoan" class="btn-send btn btn-lg"
+                <button type="button" id="btnSave" class="btn-send btn btn-lg"
                     style="min-width: 100px; justify-content: center; float:right">
                     {{ App::getLocale() == 'en' ? 'Apply now' : 'ដាក់ពាក្យ​ឥឡូវនេះ' }}
                 </button><br><br>
@@ -140,13 +148,14 @@
                             <img src="{{ $value->thumbnail }}">
                         @endforeach
                     </div>
-                    <h5>{{ App::getLocale() == 'en' ? 'CONTACT US' : 'ទំនាក់ទំនង' }}</h5>
+                    <h5 class="pb-3">{{ App::getLocale() == 'en' ? 'For more information' : 'សម្រាប់ព័ត៌មានបន្ថែម' }}
+                    </h5>
                     <?php
                     foreach ($menuFooterItems as $menuFooterItem) {
-                        if ($menuFooterItem->type == 'address' || $menuFooterItem->type == 'phone' || $menuFooterItem->type == 'email') {
+                        if ($menuFooterItem->type == 'phone' || $menuFooterItem->type == 'email' || $menuFooterItem->type == 'workTime') {
                             $value = App::getLocale() == 'en' ? $menuFooterItem->value_en : $menuFooterItem->value_kh;
-                            $str = '';
-                            echo $str = $str . '<p>' . $value . '</p><br>';
+                            $str = '<p><img style="height:20px;margin-right:5px" src="' . $menuFooterItem->image . '">' . $value . '</p><br>';
+                            echo $str;
                         }
                     }
                     ?>
@@ -154,4 +163,155 @@
             </div>
         </div>
     </section>
+    <script>
+        function valueFilCont(val = null) {
+            let loan_amount;
+            let monthly_income;
+            let purpose_loan;
+            let loan_year;
+            let full_name;
+            let email;
+            let phone_number;
+            let marital_status;
+            let date_birth;
+            let number_dependents;
+            let house_no;
+            let street;
+            let province;
+            let city;
+            let country;
+            if (val === null) {
+                loan_amount = $('#loan_amount').val();
+                monthly_income = $('#monthly_income').val();
+                purpose_loan = $('#purpose_loan').val();
+                loan_year = $('#loan_year').val();
+                full_name = $('#full_name').val();
+                email = $('#email').val();
+                phone_number = $('#phone_number').val();
+                marital_status = $('#marital_status').val();
+                date_birth = $('#date_birth').val();
+                number_dependents = $('#number_dependents').val();
+                house_no = $('#house_no').val();
+                street = $('#street').val();
+                province = $('#province').val();
+                city = $('#city').val();
+                country = $('#country').val();
+
+            }
+            if (val === 'clear') {
+                $('#loan_amount').val('');
+                $('#monthly_income').val('');
+                $('#purpose_loan').val('');
+                $('#loan_year').val('');
+                $('#full_name').val('');
+                $('#email').val('');
+                $('#phone_number').val('');
+                $('#marital_status').val('');
+                $('#date_birth').val('');
+                $('#number_dependents').val('');
+                $('#house_no').val('');
+                $('#street').val('');
+                $('#province').val('');
+                $('#city').val('');
+                $('#country').val('');
+
+            }
+
+            return {
+                'loan_amount': loan_amount,
+                'monthly_income': monthly_income,
+                'purpose_loan': purpose_loan,
+                'loan_year': loan_year,
+                'full_name': full_name,
+                'email': email,
+                'phone_number': phone_number,
+                'marital_status': marital_status,
+                'date_birth': date_birth,
+                'number_dependents': number_dependents,
+                'house_no': house_no,
+                'street': street,
+                'province': province,
+                'city': city,
+                'country': country,
+            };
+        }
+        var btnSave = true;
+        $('#btnSave').on('click', () => {
+            let formData = new FormData();
+            formData.append("loan_amount", $('#loan_amount').val());
+            formData.append("monthly_income", $('#monthly_income').val());
+            formData.append("purpose_loan", $('#purpose_loan').val());
+            formData.append("loan_year", $('#loan_year').val());
+            formData.append("full_name", $('#full_name').val());
+            formData.append("email", $('#email').val());
+            formData.append("phone_number", $('#phone_number').val());
+            formData.append("marital_status", $('#marital_status').val());
+            formData.append("date_birth", $('#date_birth').val());
+            formData.append("number_dependents", $('#number_dependents').val());
+            formData.append("house_no", $('#house_no').val());
+            formData.append("street", $('#street').val());
+            formData.append("province", $('#province').val());
+            formData.append("city", $('#city').val());
+            formData.append("country", $('#country').val());
+
+            $.ajax({
+                url: "{{ url('/admin/apply-loan/applyLoanSubmit') }}/",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                headers: {
+                    'X-CSRF-TOKEN': $("#csrf").val()
+                },
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+                    if (response.status == "error") {
+                        // valueFilCont('clear');
+                        validationMgs(response);
+                    } else {
+                        valueFilCont('clear');
+                        showMessage('success', 'Sent Successfully');
+                    }
+                },
+                error: function(e) {
+                    showMessage('Error Saving User', 'error');
+                }
+            });
+        });
+
+        function sweetToast(message, icon) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: icon,
+                title: message,
+            });
+        }
+
+        function validationMgs(response) {
+            let msg = '';
+            for (let x in response.result) {
+                msg += response.result[x][0];
+            }
+            return sweetToast(msg, response.icon);
+        }
+
+        function showMessage(type, message) {
+            Swal.fire({
+                position: "top-end",
+                icon: type,
+                title: message,
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
+    </script>
 @endsection
